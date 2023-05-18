@@ -24,10 +24,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event,message.text
-    if msg == "你喜歡什麼貓咪"
+    if msg == "你喜歡什麼貓咪":
         cat_options = ['牛貓', '橘貓', '白貓', '黑貓', '醜貓']
-        message = TextSendMessage(text=random.choice(cat_options))
         #message = TextSendMessage(text=event.message.text)
+        message = TextSendMessage(text=random.choice(cat_options))
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
