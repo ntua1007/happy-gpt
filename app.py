@@ -23,7 +23,9 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
+    cat_options = ['牛貓', '橘貓', '白貓', '黑貓', '醜貓']
+    message = TextSendMessage(text=random.choice(cat_options))
+    #message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
 
 import os
