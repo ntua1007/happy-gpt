@@ -39,6 +39,7 @@ def handle_message(event):
             # 接收到回覆訊息後，移除換行符號
             reply_msg = TextSendMessage(text=response["choices"][0]["text"].replace('\n',''))
 
+    msg = event.message.text
     if msg  == "發卡片":
         line_bot_api.reply_message(
             event.reply_token,
