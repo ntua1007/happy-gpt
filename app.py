@@ -39,6 +39,11 @@ def handle_message(event):
             # 接收到回覆訊息後，移除換行符號
             reply_msg = TextSendMessage(text=response["choices"][0]["text"].replace('\n',''))
 
+    if msg  == "發卡片":
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(alt_text="發卡片", contents=card))
+        return
     
     if msg == "午餐吃甚麼":
         lunch_options = ['便當', '麵類', '飯類', '燉飯', '三明治']
