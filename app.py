@@ -93,7 +93,7 @@ def handle_message(event):
 
     if msg == "貓咪去哪玩":
         cats = ['橘貓', '乳牛貓', '藍貓', '招財貓', '三花貓']
-        actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你。', '在等你給他吃高級牛肉罐頭。', '正在籌辦一場貓咪演唱會', '慵懶地在屋頂上睡覺。']
+        actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你。', '在等你給他吃高級牛肉罐頭。', '正在籌辦一場貓咪演唱會。', '慵懶地在屋頂上睡覺。']
         reply_msg = random.choice(cats) + random.choice(actions)
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_msg))
 
