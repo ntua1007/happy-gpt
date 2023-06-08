@@ -89,12 +89,13 @@ def handle_message(event):
             # 接收到回覆訊息後，移除換行符號
             reply_msg = TextSendMessage(text=response["choices"][0]["text"].replace('\n',''))
 
-    
+    import random
+
     if msg == "貓咪去哪玩":
-        cats_talk = ['橘貓叼著魚走了出來，跟你說午安。', '乳牛貓正在偷偷看著你。', '藍貓在等你給他吃高級牛肉罐頭。', '', '三花貓慵懶地在屋頂上睡覺。']
-        #message = TextSendMessage(text=event.message.text)
-        reply_msg = TextSendMessage(text=random.choice(cats_talk))
-    line_bot_api.reply_message(event.reply_token, reply_msg)
+        cats = ['橘貓', '乳牛貓', '藍貓', '', '三花貓']
+        actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你。', '在等你給他吃高級牛肉罐頭。', '', '慵懶地在屋頂上睡覺。']
+        reply_msg = random.choice(cats) + random.choice(actions)
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_msg))
 
 import os
 if __name__ == "__main__":
