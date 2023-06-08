@@ -105,7 +105,7 @@ def handle_message(event):
             FlexSendMessage(alt_text="發現貓咪！", contents=card))
         return
     
-    if msg  == "貓咪去哪兒":
+    if msg  == "貓咪去哪了？":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=generate_random_cat()))
