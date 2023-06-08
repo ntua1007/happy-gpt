@@ -99,7 +99,7 @@ def handle_message(event):
 
     rarity_weights = [0.68, 0.20, 0.08, 0.04]
 
-def get_random_cat():
+    def get_random_cat():
     rarity = random.choices(['common', 'rare', 'epic', 'legendary'], weights=rarity_weights)[0]
     if rarity == 'common':
         return random.choice(cats_common)
@@ -110,8 +110,8 @@ def get_random_cat():
     elif rarity == 'legendary':
         return random.choice(cats_legendary)
 
-reply_msg = get_random_cat()
-line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_msg))
+    reply_msg = get_random_cat()
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_msg))
 
    
 import os
