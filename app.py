@@ -108,7 +108,7 @@ def handle_message(event):
     if msg  == "找貓咪2":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=generate_random_cat())
+            TextSendMessage(text=generate_random_cat()))
         return
 
     ai_msg = msg[:6].lower()
