@@ -72,10 +72,10 @@ def handle_message(event):
             }
 
     msg = event.message.text
-    if msg  == "發卡片":
+    if msg  == "找貓咪":
         line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(alt_text="發卡片", contents=card))
+            FlexSendMessage(alt_text="發現貓咪！", contents=card))
         return
     ai_msg = msg[:6].lower()
     if ai_msg == 'hi ai:':
@@ -90,10 +90,10 @@ def handle_message(event):
             reply_msg = TextSendMessage(text=response["choices"][0]["text"].replace('\n',''))
 
     
-    if msg == "午餐吃甚麼":
-        lunch_options = ['便當', '麵類', '飯類', '燉飯', '三明治']
+    if msg == "貓咪去哪玩":
+        cats_talk = ['橘貓叼著魚走了出來，跟你說午安。', '乳牛貓正在偷偷看著你。', '藍貓在等你給他吃高級牛肉罐頭。', '', '三花貓慵懶地在屋頂上睡覺。']
         #message = TextSendMessage(text=event.message.text)
-        reply_msg = TextSendMessage(text=random.choice(lunch_options))
+        reply_msg = TextSendMessage(text=random.choice(cats_talk))
     line_bot_api.reply_message(event.reply_token, reply_msg)
 
 import os
