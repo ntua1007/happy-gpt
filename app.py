@@ -27,11 +27,13 @@ def generate_random_cat():
     cat_name = random.choice(cats_N)
     cat_rarity = random.choices(["SSR", "SR", "R", "N"], weights=[3, 7, 15, 75])[0]
     if cat_rarity == "SSR":
-        cat_name = random.choice(cats_SSR)
+    cat_name = random.choice(cats_SSR)
     elif cat_rarity == "SR":
-        cat_name = random.choice(cats_SR)
+    cat_name = random.choice(cats_SR)
     elif cat_rarity == "R":
-        cat_name = random.choice(cats_R)
+    cat_name = random.choice(cats_R)
+    else:
+    cat_name = random.choice(cats_N)
     cat_action = random.choice(actions)
 
     
