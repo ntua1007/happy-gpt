@@ -97,12 +97,13 @@ def generate_cat_card(name, rarity, action):
                 {
                     "type": "text",
                     "text": name + " 出現了！",
-                    "size": "xl",
+                    "size": "lg",
                     "weight": "bold",
                     "color": "#FFFFFF"
+                    "gravity": "center"
                 }
             ],
-            "backgroundColor": "#FF8C00"
+            "backgroundColor": "#7EAEF6"
         },
         "body": {
             "type": "box",
