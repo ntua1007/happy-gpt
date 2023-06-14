@@ -93,6 +93,14 @@ def generate_cat_card(name, rarity, action):
             "layout": "vertical",
             "contents": [
                 {
+                    "type": "image",
+                    "url": image_url,
+                    "size": "full",
+                    "aspectRatio": "1:1",
+                    "aspectMode": "cover",
+                    "gravity": "center"
+                },                
+                {
                     "type": "text",
                     "text": "稀有度: " + rarity,
                     "color": "#AAAAAA"
