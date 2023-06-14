@@ -4,6 +4,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 import os
 import random
+import json
 
 app = Flask(__name__)
 
@@ -241,7 +242,7 @@ card = {
     },
     "paddingAll": "0px"
 }
-    return card
+    return json.dumps(card)
 
 
 @app.route('/')
