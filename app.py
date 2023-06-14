@@ -20,12 +20,12 @@ actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你�
 
 def generate_random_cat():
     cat_name = random.choice(cats_N)
-    cat_rarity = random.choices([SSR, SR, R, N], weights=[75, 15, 7, 3])[0]
-    if cat_rarity == SSR:
+    cat_rarity = random.choices(["SSR", "SR", "R", "N"], weights=[75, 15, 7, 3])[0]
+    if cat_rarity == "SSR":
         cat_name = random.choice(cats_SSR)
-    elif cat_rarity == SR:
+    elif cat_rarity == "SR":
         cat_name = random.choice(cats_SR)
-    elif cat_rarity == R:
+    elif cat_rarity == "R":
         cat_name = random.choice(cats_R)
     cat_action = random.choice(actions)
     return cat_name, cat_rarity, cat_action
@@ -53,12 +53,12 @@ def generate_cat_card(name, rarity, action):
             "contents": [
                 {
                     "type": "text",
-                    "text": "稀有度: " + str(rarity),
+                    "text": "稀有度: " + rarity,
                     "color": "#AAAAAA"
                 },
                 {
                     "type": "text",
-                    "text": + action,
+                    "text": action,
                     "wrap": True
                 }
             ]
