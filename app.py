@@ -185,7 +185,7 @@ def handle_message(event):
         total_species = 0  # 請修改為計算出的貓咪種類數
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！"))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="你好～我是貓咪小幫手，請輸入「找貓咪」來找尋貓咪！"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="不好意思，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩吧！"))
         
 
 
