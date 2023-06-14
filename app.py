@@ -189,11 +189,12 @@ def handle_message(event):
     elif event.message.text == "窩遇見ㄌ幾隻貓咪？":
         total_cats = len(encountered_cats)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_cats} 隻猫咪！"))
-         
+
     elif event.message.text == "窩遇見ㄌ幾種貓咪？":
-        total_species = len(encountered_species)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！"))
-                
+    total_species = len(encountered_species)
+    waiting_species = 50 - total_species
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！還有 {waiting_species} 種貓咪正在等著尼！"))
+       
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="QQ...SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
         
