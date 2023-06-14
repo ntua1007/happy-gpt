@@ -22,18 +22,18 @@ actions = ['叼著魚走ㄌ出來，跟尼說午安。', '正在偷偷看著尼�
 
 
 def generate_random_cat():
-
     
     cat_name = random.choice(cats_N)
     cat_rarity = random.choices(["SSR", "SR", "R", "N"], weights=[3, 7, 15, 75])[0]
-    if cat_rarity == "SSR":
+if cat_rarity == "SSR":
     cat_name = random.choice(cats_SSR)
-    elif cat_rarity == "SR":
+elif cat_rarity == "SR":
     cat_name = random.choice(cats_SR)
-    elif cat_rarity == "R":
+elif cat_rarity == "R":
     cat_name = random.choice(cats_R)
-    else:
+else:
     cat_name = random.choice(cats_N)
+
     cat_action = random.choice(actions)
 
     
