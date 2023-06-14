@@ -67,7 +67,7 @@ def generate_cat_card(name, rarity, action):
         "狸貓": "https://i.imgur.com/3ky4O6P.jpg",
         "熊貓": "https://i.imgur.com/3ky4O6P.jpg",
     }
-    }
+    
     
     if name in cat_images:
         image_url = cat_images[name]
