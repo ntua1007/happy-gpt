@@ -32,9 +32,41 @@ def generate_random_cat():
 
 def generate_cat_card(name, rarity, action):
     cat_images = {
-        "cat1": "https://i.imgur.com/3ky4O6P.jpg",
-        "cat2": "https://i.imgur.com/3ky4O6P.jpg",
-        "cat3": "https://i.imgur.com/3ky4O6P.jpg"
+        "橘貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "黑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "白貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "藍貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "奶油貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "三花貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "玳瑁貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "賓士貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "乳牛貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "灰虎斑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "棕虎斑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "三花虎斑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "白底灰虎斑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "白底棕虎斑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "白底橘虎斑貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "黑底白襪貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "橘底白襪貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "灰底白襪貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "棕底白襪貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "啵啵貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "尷尬貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "哭哭貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "無耳貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "九命貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "豹貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "暹羅貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "布偶貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "無毛貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "波斯貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "緬因貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "美國捲耳貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "挪威森林貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "狸貓": "https://i.imgur.com/3ky4O6P.jpg",
+        "熊貓": "https://i.imgur.com/3ky4O6P.jpg",
+    }
     }
     
     if name in cat_images:
