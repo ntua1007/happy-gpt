@@ -31,6 +31,17 @@ def generate_random_cat():
     return cat_name, cat_rarity, cat_action
 
 def generate_cat_card(name, rarity, action):
+    cat_images = {
+        "cat1": "https://i.imgur.com/3ky4O6P.jpg",
+        "cat2": "https://i.imgur.com/3ky4O6P.jpg",
+        "cat3": "https://i.imgur.com/3ky4O6P.jpg"
+    }
+    
+    if name in cat_images:
+        image_url = cat_images[name]
+    else:
+        image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
+
     card = {
         "type": "bubble",
         "header": {
