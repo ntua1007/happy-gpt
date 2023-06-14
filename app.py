@@ -88,75 +88,74 @@ def generate_cat_card(name, rarity, action):
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
 
-    card = {
-        "type": "bubble",
-        "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                    "type": "text",
-                    "text": name + " 出現了！",
-                    "size": "lg",
-                    "color": "#ffffff",
-                    "weight": "bold",
-                    "style": "normal",
-                    "decoration": "none",
-                    "position": "relative",
-                    "align": "center",
-                    "margin": "lg",
-                    "gravity": "center"
-                }
-            ],
-            "backgroundColor": "#FF8C00"
-        },
-        "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                    "type": "image",
-                    "url": image_url,
-                    "size": "full",
-                    "aspectRatio": "1:1",
-                    "aspectMode": "cover",
-                    "gravity": "center"
-                },                
-                {
-                    "type": "text",
-                    "text": "稀有度: " + str(rarity),
-                    "color": "#AAAAAA"
-                    "size": "md",
-                },
-                {
-                    "type": "text",
-                    "text": action,
-                    "wrap": True
-                    "size": "md",
-                }
-            ],
-        },
-        "footer": {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-                
-              {
+card = {
+    "type": "bubble",
+    "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "text",
+                "text": name + " 出現了！",
+                "size": "lg",
+                "color": "#ffffff",
+                "weight": "bold",
+                "style": "normal",
+                "decoration": "none",
+                "position": "relative",
+                "align": "center",
+                "margin": "lg",
+                "gravity": "center"
+            }
+        ],
+        "backgroundColor": "#FF8C00"
+    },
+    "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+                "type": "image",
+                "url": image_url,
+                "size": "full",
+                "aspectRatio": "1:1",
+                "aspectMode": "cover",
+                "gravity": "center"
+            },
+            {
+                "type": "text",
+                "text": "稀有度: " + str(rarity),
+                "color": "#AAAAAA",
+                "size": "md"
+            },
+            {
+                "type": "text",
+                "text": action,
+                "wrap": True,
+                "size": "md"
+            }
+        ]
+    },
+    "footer": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+            {
                 "type": "box",
                 "layout": "vertical",
                 "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "message",
-                      "label": "再找一隻貓咪",
-                      "text": "再找一隻貓咪"
-                    },
-                    "offsetTop": "-7.5px",
-                    "position": "relative",
-                    "gravity": "bottom",
-                    "color": "#ffffff"
-                  }
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "message",
+                            "label": "再找一隻貓咪",
+                            "text": "再找一隻貓咪"
+                        },
+                        "offsetTop": "-7.5px",
+                        "position": "relative",
+                        "gravity": "bottom",
+                        "color": "#ffffff"
+                    }
                 ],
                 "borderWidth": "0px",
                 "cornerRadius": "none",
@@ -164,29 +163,29 @@ def generate_cat_card(name, rarity, action):
                 "borderColor": "#ffffff",
                 "margin": "xs",
                 "action": {
-                  "type": "message",
-                  "label": "再找一隻貓咪",
-                  "text": "再找一隻貓咪"
+                    "type": "message",
+                    "label": "再找一隻貓咪",
+                    "text": "再找一隻貓咪"
                 },
                 "height": "40px",
                 "position": "relative"
-              },
-              {
+            },
+            {
                 "type": "box",
                 "layout": "vertical",
                 "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "message",
-                      "label": "數數看窩總共遇見了幾隻貓咪",
-                      "text": "窩總共遇見了幾隻貓咪？"
-                    },
-                    "offsetTop": "-7.5px",
-                    "position": "relative",
-                    "gravity": "bottom",
-                    "color": "#ffffff"
-                  }
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "message",
+                            "label": "數數看窩總共遇見了幾隻貓咪",
+                            "text": "窩總共遇見了幾隻貓咪？"
+                        },
+                        "offsetTop": "-7.5px",
+                        "position": "relative",
+                        "gravity": "bottom",
+                        "color": "#ffffff"
+                    }
                 ],
                 "borderWidth": "0px",
                 "cornerRadius": "none",
@@ -195,27 +194,27 @@ def generate_cat_card(name, rarity, action):
                 "margin": "xs",
                 "height": "40px",
                 "action": {
-                  "type": "message",
-                  "label": "窩遇見了幾隻貓咪？",
-                  "text": "窩遇見了幾隻貓咪？"
+                    "type": "message",
+                    "label": "窩遇見了幾隻貓咪？",
+                    "text": "窩遇見了幾隻貓咪？"
                 }
-              },
-              {
+            },
+            {
                 "type": "box",
                 "layout": "vertical",
                 "contents": [
-                  {
-                    "type": "button",
-                    "action": {
-                      "type": "message",
-                      "label": "數數看窩總共遇見了幾種貓咪",
-                      "text": "窩總共遇見了幾種貓咪？"
-                    },
-                    "offsetTop": "-7.5px",
-                    "position": "relative",
-                    "gravity": "bottom",
-                    "color": "#ffffff"
-                  }
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "message",
+                            "label": "數數看窩總共遇見了幾種貓咪",
+                            "text": "窩總共遇見了幾種貓咪？"
+                        },
+                        "offsetTop": "-7.5px",
+                        "position": "relative",
+                        "gravity": "bottom",
+                        "color": "#ffffff"
+                    }
                 ],
                 "borderWidth": "0px",
                 "cornerRadius": "none",
@@ -224,29 +223,24 @@ def generate_cat_card(name, rarity, action):
                 "margin": "xs",
                 "height": "40px",
                 "action": {
-                  "type": "message",
-                  "label": "窩遇見了幾隻貓咪？",
-                  "text": "窩遇見了幾隻貓咪？"
+                    "type": "message",
+                    "label": "窩遇見了幾隻貓咪？",
+                    "text": "窩遇見了幾隻貓咪？"
                 },
                 "justifyContent": "flex-start",
                 "alignItems": "center"
-              }
-            ],
-            "position": "relative",
-            "offsetBottom": "0px",
-            "offsetStart": "0px",
-            "offsetEnd": "0px",
-            "backgroundColor": "#03303Acc",
-            "paddingAll": "20px",
-            "paddingTop": "18px"
-          }
+            }
         ],
-        "paddingAll": "0px"
-      }
-    }
-  ]
+        "position": "relative",
+        "offsetBottom": "0px",
+        "offsetStart": "0px",
+        "offsetEnd": "0px",
+        "backgroundColor": "#03303Acc",
+        "paddingAll": "20px",
+        "paddingTop": "18px"
+    },
+    "paddingAll": "0px"
 }
-
 
     return card
 
