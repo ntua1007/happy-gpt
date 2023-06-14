@@ -7,6 +7,10 @@ import random
 
 app = Flask(__name__)
 
+encountered_cats = []
+encountered_species = []
+
+
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
@@ -19,6 +23,8 @@ actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你�
 
 
 def generate_random_cat():
+
+    
     cat_name = random.choice(cats_N)
     cat_rarity = random.choices(["SSR", "SR", "R", "N"], weights=[3, 7, 15, 75])[0]
     if cat_rarity == "SSR":
@@ -28,6 +34,14 @@ def generate_random_cat():
     elif cat_rarity == "R":
         cat_name = random.choice(cats_R)
     cat_action = random.choice(actions)
+
+    
+    encountered_cats.append(cat_name)  # 加入遇見的貓咪名字
+    
+    if cat_name not in encountered_species:  # 檢查貓咪種類是否已經在遇見的種類中
+        encountered_species.append(cat_name)  # 若不在，則加入遇見的種類
+    
+    
     return cat_name, cat_rarity, cat_action
 
 def generate_cat_card(name, rarity, action):
@@ -175,17 +189,15 @@ def handle_message(event):
 
         message = FlexSendMessage(alt_text="發現貓咪！", contents=cat_card)
         line_bot_api.reply_message(event.reply_token, message)
-
-    elif event.message.text == "總共遇見了幾隻貓咪":
-        # 計算遇見貓咪的總數，並回覆訊息
-        # 在這裡實作計算邏輯
-        total_cats = 0  # 請修改為計算出的貓咪總數
+        
+     elif event.message.text == "總共遇見了幾隻貓咪":
+        total_cats = len(encountered_cats)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_cats} 隻貓咪！"))
+         
     elif event.message.text == "總共遇見了幾種貓咪":
-        # 計算遇見貓咪的種類數，並回覆訊息
-        # 在這裡實作計算邏輯
-        total_species = 0  # 請修改為計算出的貓咪種類數
+        total_species = len(encountered_species)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！"))
+        
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="不好意思，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩吧！"))
         
