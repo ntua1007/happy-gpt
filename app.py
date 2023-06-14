@@ -11,13 +11,15 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
+counter = 0  # 初始化计数器
+
 def handle_user_input(user_input):
     global counter
     if user_input.lower() == '找貓咪':
         counter += 1
         if counter >= 3:
             now = datetime.datetime.now()
-            if now.hour >= 0 and now.minute >= 0:
+            if now.hour <= 0 and now.minute <= 0:  # 修改比较运算符
                 counter = 0
             else:
                 reply_message = "今天已經累了，明天再來和貓咪玩吧QQ～"
