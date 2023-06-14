@@ -20,7 +20,7 @@ actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你�
 
 def generate_random_cat():
     cat_name = random.choice(cats_N)
-    cat_rarity = random.choices(["SSR", "SR", "R", "N"], weights=[75, 15, 7, 3])[0]
+    cat_rarity = random.choices(["SSR", "SR", "R", "N"], weights=[3, 7, 15, 75])[0]
     if cat_rarity == "SSR":
         cat_name = random.choice(cats_SSR)
     elif cat_rarity == "SR":
