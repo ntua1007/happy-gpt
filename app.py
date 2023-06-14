@@ -179,22 +179,23 @@ def handle_message(event):
     global encountered_cats
     global encountered_species
     
+    default_response = "SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"
+    message_text = event.message.text
     if message_text == "找貓咪":
         cat_species, cat_rarity, cat_action = generate_random_cat()
         card = generate_cat_card(cat_species, cat_rarity, cat_action)
         carousel_template = CarouselTemplate(columns=[card])
         template_message = TemplateSendMessage(alt_text="發現貓咪！", template=carousel_template)
         line_bot_api.reply_message(event.reply_token, template_message)
-    elif message_text == "窩遇見ㄌ幾隻貓咪？":
+    elif message_text == "窩總共遇見了幾隻貓咪？":
         total_cats = len(encountered_cats)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"尼總共遇見了 {total_cats} 隻貓咪！"))
-    elif message_text == "窩遇見ㄌ幾隻貓咪？":
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"窩總共遇見了 {total_cats} 隻貓咪！"))
+    elif message_text == "窩總共遇見了幾種貓咪？":
         total_species = len(encountered_species)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"尼總共遇見了 {total_species} 種貓咪！"))
-                
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"窩總共遇見了 {total_species} 種貓咪！"))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
-        
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=default_response))
+       
 
 if __name__ == "__main__":
     app.run()
