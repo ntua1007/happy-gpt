@@ -150,7 +150,7 @@ card = {
                         "action": {
                             "type": "message",
                             "label": "再找一隻貓咪",
-                            "text": "再找一隻貓咪"
+                            "text": "找貓咪"
                         },
                         "offsetTop": "-7.5px",
                         "position": "relative",
@@ -166,7 +166,7 @@ card = {
                 "action": {
                     "type": "message",
                     "label": "再找一隻貓咪",
-                    "text": "再找一隻貓咪"
+                    "text": "找貓咪"
                 },
                 "height": "40px",
                 "position": "relative"
