@@ -12,7 +12,7 @@ line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 openai.api_key = os.environ['OPENAI_SECRET']
 
-cats_N = ['橘貓', '黑貓', '白貓', '藍貓', '奶油貓', '三花貓', '玳瑁貓', '賓士貓', '乳牛貓', '灰虎斑貓', '棕虎斑貓', '三花虎斑貓', '白底灰虎斑貓', '白底棕虎斑貓', '白底橘虎斑貓', '黑底白襪貓', '橘底白襪貓', '灰底白襪貓', '棕底白襪貓''啵啵貓', '尷尬貓', '哭哭貓', '無耳貓', '九命貓', '豹貓', '暹羅貓', '布偶貓', '無毛貓', '波斯貓', '緬因貓', '美國捲耳貓', '挪威森林貓', '狸貓', '熊貓']
+cats_N = ['橘貓', '黑貓', '白貓', '藍貓', '奶油貓', '三花貓', '玳瑁貓', '賓士貓', '乳牛貓', '灰虎斑貓', '棕虎斑貓', '三花虎斑貓', '白底灰虎斑貓', '白底棕虎斑貓', '白底橘虎斑貓', '黑底白襪貓', '橘底白襪貓', '灰底白襪貓', '棕底白襪貓', '啵啵貓', '尷尬貓', '哭哭貓', '無耳貓', '九命貓', '豹貓', '暹羅貓', '布偶貓', '無毛貓', '波斯貓', '緬因貓', '美國捲耳貓', '挪威森林貓', '狸貓', '熊貓']
 cats_R = ['薄荷冰淇淋貓', '草莓蛋糕貓', '香蕉巧克力貓', '外星幽浮貓', '藍莓優格貓', '柳橙果醬貓', '戀愛棉花糖貓', '宇治抹茶貓', '櫻桃馬卡龍貓', '檸檬汽水貓']
 cats_SR = ['彩虹獨角貓', '白金鑽石貓', '黑夜伯爵貓', '月光精靈貓']
 cats_SSR = ['尊絕不凡天使貓', '混沌帝王惡魔貓']
@@ -62,15 +62,51 @@ def generate_cat_card(name, rarity, action):
                     "wrap": True
                 }
             ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "再找一隻貓咪",
+                        "text": "抽貓咪"
+                    },
+                    "style": "primary"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "數數看我總共遇見了幾隻貓咪",
+                        "text": "總共遇見了幾隻貓咪"
+                    },
+                    "style": "primary"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "數數看我總共遇見了幾種貓咪",
+                        "text": "總共遇見了幾種貓咪"
+                    },
+                    "style": "primary"
+                }
+            ]
         }
     }
     return card
+
+@app.route('/')
+def index():
+    return 'Hello World!'
 
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -79,13 +115,23 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == '抽貓咪':
+    if event.message.text == "抽貓咪":
         cat_name, cat_rarity, cat_action = generate_random_cat()
-        card = generate_cat_card(cat_name, cat_rarity, cat_action)
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(alt_text="發現貓咪！", contents=card)
-        )
+        cat_card = generate_cat_card(cat_name, cat_rarity, cat_action)
+        message = FlexSendMessage(alt_text="貓咪卡片", contents=cat_card)
+        line_bot_api.reply_message(event.reply_token, message)
+    elif event.message.text == "總共遇見了幾隻貓咪":
+        # 計算遇見貓咪的總數，並回覆訊息
+        # 在這裡實作計算邏輯
+        total_cats = 0  # 請修改為計算出的貓咪總數
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_cats} 隻貓咪！"))
+    elif event.message.text == "總共遇見了幾種貓咪":
+        # 計算遇見貓咪的種類數，並回覆訊息
+        # 在這裡實作計算邏輯
+        total_species = 0  # 請修改為計算出的貓咪種類數
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！"))
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="我是貓咪小幫手，請輸入「抽貓咪」來抽一隻貓咪！"))
 
 if __name__ == "__main__":
     app.run()
