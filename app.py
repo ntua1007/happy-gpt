@@ -100,7 +100,6 @@ def generate_cat_card(name, rarity, action):
                     "size": "lg",
                     "weight": "bold",
                     "color": "#FFFFFF"
-                    "gravity": "center"
                 }
             ],
             "backgroundColor": "#7EAEF6"
