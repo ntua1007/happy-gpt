@@ -130,7 +130,7 @@ def generate_cat_card(name, rarity, action):
         },
         "footer": {
             "type": "box",
-            "layout": "horizontal",
+            "layout": "vertical",
             "contents": [
                 {
                     "type": "button",
