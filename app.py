@@ -190,7 +190,7 @@ def handle_message(event):
         message = FlexSendMessage(alt_text="發現貓咪！", contents=cat_card)
         line_bot_api.reply_message(event.reply_token, message)
         
-     elif event.message.text == "總共遇見了幾隻貓咪":
+    elif event.message.text == "總共遇見了幾隻貓咪":
         total_cats = len(encountered_cats)
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_cats} 隻貓咪！"))
          
