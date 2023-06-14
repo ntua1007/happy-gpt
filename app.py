@@ -282,6 +282,5 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
         
 
-
 if __name__ == "__main__":
     app.run()
