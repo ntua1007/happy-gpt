@@ -140,36 +140,114 @@ def generate_cat_card(name, rarity, action):
             "type": "box",
             "layout": "horizontal",
             "contents": [
-                {
+                
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
                     "type": "button",
                     "action": {
-                        "type": "message",
-                        "label": "再找一隻貓咪",
-                        "text": "找貓咪"
+                      "type": "message",
+                      "label": "再找一隻貓咪",
+                      "text": "再找一隻貓咪"
                     },
-                    "style": "primary"
+                    "offsetTop": "-7.5px",
+                    "position": "relative",
+                    "gravity": "bottom",
+                    "color": "#ffffff"
+                  }
+                ],
+                "borderWidth": "0px",
+                "cornerRadius": "none",
+                "spacing": "none",
+                "borderColor": "#ffffff",
+                "margin": "xs",
+                "action": {
+                  "type": "message",
+                  "label": "再找一隻貓咪",
+                  "text": "再找一隻貓咪"
                 },
-                {
+                "height": "40px",
+                "position": "relative"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
                     "type": "button",
                     "action": {
-                        "type": "message",
-                        "label": "數數看窩總共遇見ㄌ幾隻貓咪",
-                        "text": "窩總共遇見ㄌ幾隻貓咪"
+                      "type": "message",
+                      "label": "數數看窩總共遇見了幾隻貓咪",
+                      "text": "窩總共遇見了幾隻貓咪？"
                     },
-                    "style": "primary"
-                },
-                {
-                    "type": "button",
-                    "action": {
-                        "type": "message",
-                        "label": "數數看窩總共遇見ㄌ幾種貓咪",
-                        "text": "窩總共遇見ㄌ幾種貓咪"
-                    },
-                    "style": "primary"
+                    "offsetTop": "-7.5px",
+                    "position": "relative",
+                    "gravity": "bottom",
+                    "color": "#ffffff"
+                  }
+                ],
+                "borderWidth": "0px",
+                "cornerRadius": "none",
+                "spacing": "none",
+                "borderColor": "#ffffff",
+                "margin": "xs",
+                "height": "40px",
+                "action": {
+                  "type": "message",
+                  "label": "窩遇見了幾隻貓咪？",
+                  "text": "窩遇見了幾隻貓咪？"
                 }
-            ]
-        }
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "button",
+                    "action": {
+                      "type": "message",
+                      "label": "數數看窩總共遇見了幾種貓咪",
+                      "text": "窩總共遇見了幾種貓咪？"
+                    },
+                    "offsetTop": "-7.5px",
+                    "position": "relative",
+                    "gravity": "bottom",
+                    "color": "#ffffff"
+                  }
+                ],
+                "borderWidth": "0px",
+                "cornerRadius": "none",
+                "spacing": "none",
+                "borderColor": "#ffffff",
+                "margin": "xs",
+                "height": "40px",
+                "action": {
+                  "type": "message",
+                  "label": "窩遇見了幾隻貓咪？",
+                  "text": "窩遇見了幾隻貓咪？"
+                },
+                "justifyContent": "flex-start",
+                "alignItems": "center"
+              }
+            ],
+            "position": "relative",
+            "offsetBottom": "0px",
+            "offsetStart": "0px",
+            "offsetEnd": "0px",
+            "backgroundColor": "#03303Acc",
+            "paddingAll": "20px",
+            "paddingTop": "18px"
+          }
+        ],
+        "paddingAll": "0px"
+      }
     }
+  ]
+}
+
+
     return card
 
 
