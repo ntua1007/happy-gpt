@@ -90,7 +90,22 @@ def generate_cat_card(name, rarity, action):
 
 
     card_content = {
+            card = {
         "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": name + " 出現了！",
+                    "size": "lg",
+                    "weight": "bold",
+                    "color": "#7EAEF6"
+                }
+            ],
+            "backgroundColor": "#7EAEF6"
+        },
         "body": {
             "type": "box",
             "layout": "vertical",
@@ -102,7 +117,7 @@ def generate_cat_card(name, rarity, action):
                     "aspectRatio": "1:1",
                     "aspectMode": "cover",
                     "gravity": "center"
-                },
+                },                
                 {
                     "type": "text",
                     "text": "稀有度: " + str(rarity),
@@ -113,7 +128,7 @@ def generate_cat_card(name, rarity, action):
                     "text": action,
                     "wrap": True
                 }
-            ]
+            ],
         },
         "footer": {
             "type": "box",
@@ -126,16 +141,24 @@ def generate_cat_card(name, rarity, action):
                         "label": "再找一隻貓咪",
                         "text": "找貓咪"
                     },
-                    "color": "#FFFFFF"
+                    "color": "#7EAEF6"
                 },
                 {
                     "type": "button",
                     "action": {
                         "type": "message",
                         "label": "數數看窩總共遇見了幾隻貓咪",
-                        "text": "數貓咪"
+                        "text": "窩遇見ㄌ幾隻貓咪？"
                     },
-                    "color": "#FFFFFF"
+                    "color": "#7EAEF6"
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "數數看窩總共遇見了幾種貓咪",
+                        "text": "窩遇見ㄌ幾種貓咪？"
+                    },
+                    "color": "#7EAEF6"
                 }
             ]
         }
