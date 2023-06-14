@@ -35,7 +35,8 @@ def generate_random_cat():
         encountered_species.append(cat_species)
     encountered_cats.append(cat_species)
     
-    return cat_name, cat_rarity, cat_action
+    return cat_species, cat_rarity, random.choice(actions)
+
 
 def generate_cat_card(name, rarity, action):
     cat_images = {
