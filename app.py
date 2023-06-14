@@ -88,9 +88,7 @@ def generate_cat_card(name, rarity, action):
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
 
-
-    card_content = {
-            card = {
+    card = {
         "type": "bubble",
         "header": {
             "type": "box",
@@ -101,7 +99,7 @@ def generate_cat_card(name, rarity, action):
                     "text": name + " 出現了！",
                     "size": "lg",
                     "weight": "bold",
-                    "color": "#7EAEF6"
+                    "color": "#FFFFFF"
                 }
             ],
             "backgroundColor": "#7EAEF6"
@@ -132,7 +130,7 @@ def generate_cat_card(name, rarity, action):
         },
         "footer": {
             "type": "box",
-            "layout": "vertical",
+            "layout": "horizontal",
             "contents": [
                 {
                     "type": "button",
@@ -141,30 +139,31 @@ def generate_cat_card(name, rarity, action):
                         "label": "再找一隻貓咪",
                         "text": "找貓咪"
                     },
-                    "color": "#7EAEF6"
+                    "style": "primary"
                 },
                 {
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "數數看窩總共遇見了幾隻貓咪",
-                        "text": "窩遇見ㄌ幾隻貓咪？"
+                        "label": "數數看窩總共遇見ㄌ幾隻貓咪",
+                        "text": "窩總共遇見ㄌ幾隻貓咪"
                     },
-                    "color": "#7EAEF6"
+                    "style": "primary"
+                },
                 {
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "數數看窩總共遇見了幾種貓咪",
-                        "text": "窩遇見ㄌ幾種貓咪？"
+                        "label": "數數看窩總共遇見ㄌ幾種貓咪",
+                        "text": "窩總共遇見ㄌ幾種貓咪"
                     },
-                    "color": "#7EAEF6"
+                    "style": "primary"
                 }
             ]
         }
     }
+    return card
 
-    return card_content
 
 @app.route('/')
 def index():
