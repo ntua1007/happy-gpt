@@ -80,7 +80,7 @@ def generate_cat_card(name, rarity, action):
             "contents": [
                 {
                     "type": "text",
-                    "text": name + " 出現了！ "
+                    "text": name + " 出現了！",
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF"
@@ -110,7 +110,7 @@ def generate_cat_card(name, rarity, action):
                     "text": action,
                     "wrap": True
                 }
-            ]
+            ],
         },
         "footer": {
             "type": "box",
