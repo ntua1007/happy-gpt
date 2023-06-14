@@ -168,13 +168,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 
 def handle_message(event):
-
-    user_input = event.message.text
-    reply_message = handle_user_input(user_input)
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=reply_message)
-    )
     
     if event.message.text == '找貓咪':
         cat_name, cat_rarity, cat_action = generate_random_cat()
