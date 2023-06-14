@@ -1,3 +1,4 @@
+有圖片醜醜版
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -80,7 +81,7 @@ def generate_cat_card(name, rarity, action):
             "contents": [
                 {
                     "type": "text",
-                    "text": name,
+                    "text": name,+ "出現了！"
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF"
