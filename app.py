@@ -154,10 +154,12 @@ def generate_cat_card(name, rarity, action):
 }
 ],
 "paddingAll": "0px"
+    },
+  }
+
+    return card;
 }
-}
-]
-  return card
+
 
 @app.route('/')
 def index():
