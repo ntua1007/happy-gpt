@@ -96,7 +96,7 @@ card = {
         "contents": [
             {
                 "type": "text",
-                "text": name + " 出現了！",
+                "text": name + " 出現ㄌ！",
                 "size": "lg",
                 "color": "#ffffff",
                 "weight": "bold",
@@ -178,8 +178,8 @@ card = {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "數數看窩總共遇見了幾隻貓咪",
-                            "text": "窩總共遇見了幾隻貓咪？"
+                            "label": "數數看窩總共遇見ㄌ幾隻貓咪",
+                            "text": "窩總共遇見ㄌ幾隻貓咪？"
                         },
                         "offsetTop": "-7.5px",
                         "position": "relative",
@@ -195,8 +195,8 @@ card = {
                 "height": "40px",
                 "action": {
                     "type": "message",
-                    "label": "窩遇見了幾隻貓咪？",
-                    "text": "窩遇見了幾隻貓咪？"
+                    "label": "窩遇見ㄌ幾隻貓咪？",
+                    "text": "窩遇見ㄌ幾隻貓咪？"
                 }
             },
             {
@@ -207,8 +207,8 @@ card = {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "數數看窩總共遇見了幾種貓咪",
-                            "text": "窩總共遇見了幾種貓咪？"
+                            "label": "數數看窩總共遇見ㄌ幾種貓咪",
+                            "text": "窩總共遇見ㄌ幾種貓咪？"
                         },
                         "offsetTop": "-7.5px",
                         "position": "relative",
@@ -224,8 +224,8 @@ card = {
                 "height": "40px",
                 "action": {
                     "type": "message",
-                    "label": "窩遇見了幾隻貓咪？",
-                    "text": "窩遇見了幾隻貓咪？"
+                    "label": "窩遇見ㄌ幾隻貓咪？",
+                    "text": "窩遇見ㄌ幾隻貓咪？"
                 },
                 "justifyContent": "flex-start",
                 "alignItems": "center"
@@ -241,7 +241,6 @@ card = {
     },
     "paddingAll": "0px"
 }
-
     return card
 
 
