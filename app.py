@@ -139,7 +139,7 @@ def generate_cat_card(name, rarity, action):
                         "label": "再找一隻貓咪",
                         "text": "找貓咪"
                     },
-                    "style": "primary"
+                    "color": "#7EAEF6"
                 },
                 {
                     "type": "button",
@@ -148,7 +148,7 @@ def generate_cat_card(name, rarity, action):
                         "label": "數數看窩總共遇見ㄌ幾隻貓咪",
                         "text": "窩遇見ㄌ幾隻貓咪？"
                     },
-                    "style": "primary"
+                    "color": "#7EAEF6"
                 },
                 {
                     "type": "button",
@@ -157,7 +157,7 @@ def generate_cat_card(name, rarity, action):
                         "label": "數數看窩總共遇見ㄌ幾種貓咪",
                         "text": "窩遇見ㄌ幾種貓咪？"
                     },
-                    "style": "primary"
+                    "color": "#7EAEF6"
                 }
             ]
         }
