@@ -88,78 +88,60 @@ def generate_cat_card(name, rarity, action):
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
 
-"body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-        {
-            "type": "image",
-            "url": image_url,
-            "size": "full",
-            "aspectRatio": "1:1",
-            "aspectMode": "cover",
-            "gravity": "center"
-        },                
-        {
-            "type": "text",
-            "text": "稀有度: " + str(rarity),
-            "color": "#AAAAAA"
-        },
-        {
-            "type": "text",
-            "text": action,
-            "wrap": true
-        }
-    ]
-},
-{
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-        {
-            "type": "button",
-            "action": {
-                "type": "message",
-                "label": "再找一隻貓咪",
-                "text": "找貓咪"
-            },
-            "color": "#FFFFFF"
-        },
-        {
-            "type": "button",
-            "action": {
-                "type": "message",
-                "label": "數數看窩總共遇見了幾隻貓咪",
-                "text": "窩總共遇見了幾隻貓咪？"
-            },
-            "color": "#FFFFFF"
-        },
-        {
-            "type": "button",
-            "action": {
-                "type": "message",
-                "label": "數數看窩總共遇見了幾種貓咪",
-                "text": "窩總共遇見了幾種貓咪？"
-            },
-            "color": "#FFFFFF"
-        }
-    ],
-    "position": "relative",
-    "offsetBottom": "0px",
-    "offsetStart": "0px",
-    "offsetEnd": "0px",
-    "backgroundColor": "#7EAEF6",
-    "paddingAll": "20px",
-    "paddingTop": "18px"
-}
-],
-"paddingAll": "0px"
-    },
-  }
 
-    return card;
-}
+    card_content = {
+        "type": "bubble",
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "image",
+                    "url": image_url,
+                    "size": "full",
+                    "aspectRatio": "1:1",
+                    "aspectMode": "cover",
+                    "gravity": "center"
+                },
+                {
+                    "type": "text",
+                    "text": "稀有度: " + str(rarity),
+                    "color": "#AAAAAA"
+                },
+                {
+                    "type": "text",
+                    "text": action,
+                    "wrap": True
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "再找一隻貓咪",
+                        "text": "找貓咪"
+                    },
+                    "color": "#FFFFFF"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "數數看窩總共遇見了幾隻貓咪",
+                        "text": "數貓咪"
+                    },
+                    "color": "#FFFFFF"
+                }
+            ]
+        }
+    }
 
+    return card_content
 
 @app.route('/')
 def index():
