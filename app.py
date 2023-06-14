@@ -142,6 +142,7 @@ def generate_cat_card(name, rarity, action):
     }
     return card
 
+
 @app.route('/')
 def index():
     return 'Hello World!'
