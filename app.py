@@ -11,30 +11,23 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
+def handle_user_input(user_input):
+    global counter
+    if user_input.lower() == '找貓咪':
+        counter += 1
+        if counter >= 3:
+            now = datetime.datetime.now()
+            if now.hour >= 0 and now.minute >= 0:
+                counter = 0
+            else:
+                reply_message = "今天已經累了，明天再來和貓咪玩吧QQ～"
+                return reply_message
+
 cats_N = ['橘貓', '黑貓', '白貓', '藍貓', '奶油貓', '三花貓', '玳瑁貓', '賓士貓', '乳牛貓', '灰虎斑貓', '棕虎斑貓', '三花虎斑貓', '白底灰虎斑貓', '白底棕虎斑貓', '白底橘虎斑貓', '黑底白襪貓', '橘底白襪貓', '灰底白襪貓', '棕底白襪貓', '啵啵貓', '尷尬貓', '哭哭貓', '無耳貓', '九命貓', '豹貓', '暹羅貓', '布偶貓', '無毛貓', '波斯貓', '緬因貓', '美國捲耳貓', '挪威森林貓', '狸貓', '熊貓']
 cats_R = ['薄荷冰淇淋貓', '草莓蛋糕貓', '香蕉巧克力貓', '外星幽浮貓', '藍莓優格貓', '柳橙果醬貓', '戀愛棉花糖貓', '宇治抹茶貓', '櫻桃馬卡龍貓', '檸檬汽水貓']
 cats_SR = ['彩虹獨角貓', '白金鑽石貓', '黑夜伯爵貓', '月光精靈貓']
 cats_SSR = ['尊絕不凡天使貓', '混沌帝王惡魔貓']
 actions = ['叼著魚走了出來，跟你說午安。', '正在偷偷看著你。', '在等你給他吃高級牛肉罐頭。', '正在籌辦一場貓咪演唱會。', '慵懶地在屋頂上睡覺。','與其他貓咪一起打瞌睡。', '正摩擦著你的腿討摸摸。', '玩耍時不小心撞到牆壁，尷尬地跑開。', '在房間裡找尋一個舒適的角落休息。', '跟一隻蝴蝶玩追逐遊戲。', '跳上高處觀察窗外的景色。', '正在學習新的抓癢技巧。', '輕輕地舔嘴巴清潔毛髮。', '在花園裡追逐蝴蝶。', '正在曬日光浴。', '躺在窗台上觀察外面的鳥兒。', '正在跳躍著玩捉迷藏。', '正在玩廢紙球。', '正在挖掘地毯下的秘密。', '正在思考宇宙的奧秘。', '在玩具老鼠前舞動尾巴。', '正在與貓友進行友誼戰。', '在陽台上耍廢。', '正在趴在鋼琴上嘗試彈出一首貓曲。', '悄悄地爬上樹頂。', '趴在窗戶旁觀察松鼠。', '正在捕捉空氣中的灰塵。', '正在幫另一隻貓咪洗澡。', '在藝術品旁邊擺出優雅的姿勢。', '滾來滾去，顆一隻毛球。', '正在學習玩逗貓棒的技巧。', '在紙箱裡窩著，做白日夢。', '坐在窗戶旁邊與白雲一起午睡。', '正在玩2048。', '正在玩俄羅斯方塊。', '打破了花瓶。', '跳進了貓咪隧道裡探險。', '正在訓練自己的狩獵技巧。', '躺在你的懷裡踏踏。', '正在玩POPCAT。', '正在搖屁屁。', '趴在暖爐旁邊感受溫暖。', '在房間四處遊蕩，尋找新玩具。', '在電視機前坐著，好奇地看著新聞。', '踩著鋼琴鍵盤，彈奏出一段奇妙的旋律。', '在沙灘上挖洞，冒出貓頭嚇人。', '在玩蓮蓬頭，搞得全身溼答答。', '正打算悄悄溜進你的枕頭下面。', '在牆上跳舞，展現出驚人的舞技。']
-
-def handle_user_input(input_text):
-    global cat_counter
-
-    # 處理使用者輸入
-    if input_text == "找貓咪":
-        # 檢查是否已達到每日上限
-        if cat_counter >= 3:
-            # 檢查是否已過凌晨十二點，若是則重置計數器
-            now = datetime.datetime.now()
-            if now.hour >= 0 and now.minute >= 0:
-                cat_counter = 0
-            else:
-                reply = "今天已經累了，明天再來和貓咪玩吧QQ～"
-                return reply
-
-        cat_counter += 1  # 更新計數器
-
-    return None  # 若不需要回傳訊息，則回傳 None
 
 
 def generate_random_cat():
@@ -187,6 +180,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 
 def handle_message(event):
+
+    user_input = event.message.text
+    reply_message = handle_user_input(user_input)
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=reply_message)
+    )
     
     if event.message.text == '找貓咪':
         cat_name, cat_rarity, cat_action = generate_random_cat()
