@@ -242,7 +242,7 @@ card = {
     },
     "paddingAll": "0px"
 }
-    return json.dumps(card)
+    return card
 
 
 @app.route('/')
