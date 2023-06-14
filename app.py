@@ -185,19 +185,22 @@ def handle_message(event):
 
         message = FlexSendMessage(alt_text="發現貓咪！", contents=cat_card)
         line_bot_api.reply_message(event.reply_token, message)
-        
+
     elif event.message.text == "窩遇見ㄌ幾隻貓咪？":
         total_cats = len(encountered_cats)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_cats} 隻猫咪！貓咪永遠不嫌多。"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"尼總共遇見了 {total_cats} 隻貓咪！貓咪永遠不嫌多。"))
 
     elif event.message.text == "窩遇見ㄌ幾種貓咪？":
         total_species = len(encountered_species)
-        waiting_species = 50 - total_species
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！還有 {waiting_species} 種貓咪正在等著尼！"))
-       
+        if total_species == 50:
+            message = "太棒了，尼已經找到ㄌ所有ㄉ貓咪！"
+        else:
+            waiting_species = 50 - total_species
+            message = f"尼總共遇見了 {total_species} 種貓咪！還有 {waiting_species} 種貓咪正在等著尼！"
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
+
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="QQ...SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
-        
 
 if __name__ == "__main__":
     app.run()
