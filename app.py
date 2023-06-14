@@ -85,7 +85,7 @@ msg = event.message.text
 if msg == "找貓咪":
     line_bot_api.reply_message(
         event.reply_token,
-        generate_random_cat())
+        random_cat_card)
     return
 
     
