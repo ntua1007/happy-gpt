@@ -32,7 +32,10 @@ def handle_user_input(input_text):
                 reply = "今天已經累了，明天再來和貓咪玩吧QQ～"
                 return reply
 
-        cat_counter += 1
+        cat_counter += 1  # 更新計數器
+
+    return None  # 若不需要回傳訊息，則回傳 None
+
 
 def generate_random_cat():
     cat_name = random.choice(cats_N)
