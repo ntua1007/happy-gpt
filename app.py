@@ -81,7 +81,7 @@ def generate_cat_card(name, rarity, action):
             "contents": [
                 {
                     "type": "text",
-                    "text": name,+ "出現了！"
+                    "text": name,+ " 出現了！ "
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF"
@@ -122,7 +122,7 @@ def generate_cat_card(name, rarity, action):
                     "action": {
                         "type": "message",
                         "label": "再找一隻貓咪",
-                        "text": "抽貓咪"
+                        "text": "找貓咪"
                     },
                     "style": "primary"
                 },
@@ -167,11 +167,11 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 
 def handle_message(event):
-    if event.message.text == '抽貓咪':
+    if event.message.text == '找貓咪':
         cat_name, cat_rarity, cat_action = generate_random_cat()
         cat_card = generate_cat_card(cat_name, cat_rarity, cat_action)
 
-        message = FlexSendMessage(alt_text="貓咪卡片", contents=cat_card)
+        message = FlexSendMessage(alt_text="發現貓咪！", contents=cat_card)
         line_bot_api.reply_message(event.reply_token, message)
 
     elif event.message.text == "總共遇見了幾隻貓咪":
@@ -185,7 +185,7 @@ def handle_message(event):
         total_species = 0  # 請修改為計算出的貓咪種類數
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！"))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="我是貓咪小幫手，請輸入「抽貓咪」來抽一隻貓咪！"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="你好～我是貓咪小幫手，請輸入「找貓咪」來找尋貓咪！"))
         
 
 
