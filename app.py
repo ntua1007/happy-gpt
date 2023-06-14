@@ -10,7 +10,6 @@ app = Flask(__name__)
 encountered_cats = []
 encountered_species = []
 
-
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
@@ -182,6 +181,8 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 
 def handle_message(event):
+    global encountered_cats
+    global encountered_species
     
     if event.message.text == '找貓咪':
         cat_name, cat_rarity, cat_action = generate_random_cat()
@@ -192,12 +193,12 @@ def handle_message(event):
         
     elif event.message.text == "窩遇見ㄌ幾隻貓咪？":
         total_cats = len(encountered_cats)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見ㄌ {total_cats} 隻貓咪！"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_cats} 隻猫咪！"))
          
     elif event.message.text == "窩遇見ㄌ幾種貓咪？":
         total_species = len(encountered_species)
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見ㄌ {total_species} 種貓咪！"))
-        
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f"總共遇見了 {total_species} 種貓咪！"))
+                
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
         
