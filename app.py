@@ -146,7 +146,7 @@ def generate_cat_card(name, rarity, action):
                     "action": {
                         "type": "message",
                         "label": "數數看窩總共遇見ㄌ幾隻貓咪",
-                        "text": "窩總共遇見ㄌ幾隻貓咪"
+                        "text": "窩遇見ㄌ幾隻貓咪？"
                     },
                     "style": "primary"
                 },
@@ -155,7 +155,7 @@ def generate_cat_card(name, rarity, action):
                     "action": {
                         "type": "message",
                         "label": "數數看窩總共遇見ㄌ幾種貓咪",
-                        "text": "窩總共遇見ㄌ幾種貓咪"
+                        "text": "窩遇見ㄌ幾種貓咪？"
                     },
                     "style": "primary"
                 }
