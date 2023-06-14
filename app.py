@@ -34,7 +34,6 @@ def generate_random_cat():
     if cat_species not in encountered_species:
         encountered_species.append(cat_species)
     encountered_cats.append(cat_species)
-    return cat_species
     
     return cat_name, cat_rarity, cat_action
 
