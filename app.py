@@ -8,9 +8,9 @@ import openai
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
-handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
-openai.api_key = os.environ['OPENAI_SECRET']
+line_bot_api = LineBotApi('CHANNEL_ACCESS_TOKEN')  # 設定CHANNEL_ACCESS_TOKEN
+handler = WebhookHandler('CHANNEL_SECRET')  # 設定CHANNEL_SECRET
+openai.api_key = 'OPENAI_SECRET'  # 設定OPENAI_SECRET
 
 
 cats_N = ['橘貓', '黑貓', '白貓', '藍貓', '奶油貓', '三花貓', '玳瑁貓', '賓士貓', '乳牛貓', '灰虎斑貓', '棕虎斑貓', '三花虎斑貓', '白底灰虎斑貓', '白底棕虎斑貓', '白底橘虎斑貓', '黑底白襪貓', '橘底白襪貓', '灰底白襪貓', '棕底白襪貓', '啵啵貓', '尷尬貓', '哭哭貓', '無耳貓', '九命貓', '豹貓', '暹羅貓', '布偶貓', '無毛貓', '波斯貓', '緬因貓', '美國捲耳貓', '挪威森林貓', '狸貓', '熊貓']
@@ -35,75 +35,59 @@ def generate_random_cat():
     return f'{cat} {action}'
 
 
-@app.route("/callback", methods=['POST'])
-def callback():
-    signature = request.headers['X-Line-Signature']
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-    return 'OK'
+import random
 
+def generate_random_cat():
+    # 定義不同貓咪的資料
+    cats = [
+        {"name": "貓咪1", "image_url": "https://i.imgur.com/3ky4O6P.jpg", "rarity": "N"},
+        {"name": "貓咪2", "image_url": "https://i.imgur.com/3ky4O6P.jpg", "rarity": "R"},
+        {"name": "貓咪3", "image_url": "https://i.imgur.com/3ky4O6P.jpg", "rarity": "SR"},
+        {"name": "貓咪4", "image_url": "https://i.imgur.com/3ky4O6P.jpg", "rarity": "SSR"},
+    ]
 
+    # 隨機選擇一隻貓咪
+    cat = random.choice(cats)
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
+    # 根據貓咪資料生成卡片程式碼
     card = {
-              "type": "bubble",
-              "hero": {
-                "type": "image",
-                "url": "https://lions-clubs.dev2.rib.tw/static/documents/images/Lions_Clubs_International.png",
-                "size": "full",
-                "aspectRatio": "1:1",
-                "aspectMode": "cover",
-                "action": {
-                  "type": "uri",
-                  "uri": "http://linecorp.com/"
-                }
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
+        "type": "bubble",
+        "hero": {
+            "type": "image",
+            "url": cat["image_url"],
+            "size": "full",
+            "aspectRatio": "1:1",
+            "aspectMode": "cover"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
                     "type": "text",
-                    "text": "113年度獲獎獅友名單",
+                    "text": f"{cat['rarity']} {cat['name']} 出現了！",
                     "weight": "bold",
                     "size": "xl"
-                  }
-                ]
-              },
-              "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                  {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action": {
-                      "type": "uri",
-                      "label": "公文連結",
-                      "uri": "https://lions-clubs.dev2.rib.tw"
-                    }
-                  }
-                ],
-                "flex": 0
-              }
-            }
+                }
+            ]
+        }
+    }
+
+    return FlexSendMessage(alt_text="發現貓咪！", contents=card)
+
+
+# 呼叫函式生成隨機貓咪卡片
+random_cat_card = generate_random_cat()
 
 
 
+msg = event.message.text
+if msg == "找貓咪":
+    line_bot_api.reply_message(
+        event.reply_token,
+        generate_random_cat())
+    return
 
-    msg = event.message.text
-    if msg  == "找貓咪":
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(alt_text="發現貓咪！", contents=card))
-        return
     
     if msg  == "找貓咪2":
         line_bot_api.reply_message(
