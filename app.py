@@ -68,7 +68,7 @@ def generate_cat_card(name, rarity, action):
     
     
     if name in cat_images:
-        image_url = cat_images[name]
+        image_url = cat_images[name],
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
 
@@ -80,7 +80,7 @@ def generate_cat_card(name, rarity, action):
             "contents": [
                 {
                     "type": "text",
-                    "text": name,+ " 出現了！ "
+                    "text": name + " 出現了！ "
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF"
@@ -102,7 +102,7 @@ def generate_cat_card(name, rarity, action):
                 },                
                 {
                     "type": "text",
-                    "text": "稀有度: " + rarity,
+                    "text": "稀有度: " + str(rarity),
                     "color": "#AAAAAA"
                 },
                 {
