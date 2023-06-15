@@ -101,10 +101,8 @@ def generate_cat_card(name, rarity, action):
         "白金鑽石貓": "https://i.imgur.com/6vRI7ZI.jpg",
         "黑夜伯爵貓": "https://i.imgur.com/tQqFyr6.jpg",
         "月光精靈貓": "https://i.imgur.com/P8jsieK.jpg",
-        "尊絕不凡天使貓": "https://i.imgur.com/ao3WB1G.jpg", #待補
+        "尊絕不凡天使貓": "https://i.imgur.com/QUdyIos.jpg", 
         "混沌帝王惡魔貓": "https://i.imgur.com/ao3WB1G.jpg",
-    
-
     }
     
     
