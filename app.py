@@ -198,7 +198,7 @@ def update_user_fortune_record(user_id):
     # 更新用戶的占卜記錄為當前時間
     user_fortune_records[user_id] = datetime.datetime.now()
 
-def callback():
+def callback(event):
     # 獲取用戶的 ID
     user_id = event.source.user_id
   
@@ -284,13 +284,13 @@ def callback():
                         # 回覆占卜結果給用戶
                         line_bot_api.reply_message(
                             event.reply_token,
-                            [TextSendMessage(text="這是你的占卜結果："),
+                            [FlexSendMessage(text="這是尼今天ㄉ占卜結果："),
                              fortune_card]
                         )
                     else:
                         line_bot_api.reply_message(
                             event.reply_token,
-                            TextSendMessage(text="每天只能抽一次喔！請明天再來～")
+                            TextSendMessage(text="每天只能占卜一次ㄛ！請明天再來～")
                         )
     return 'OK'
 
