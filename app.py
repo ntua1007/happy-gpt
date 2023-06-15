@@ -200,6 +200,12 @@ def get_fortune(username):
     fortune = cat_fortune_telling()
     return "這是尼今天ㄉ占卜結果：" + fortune + "！"
 
+def cat_fortune_telling():
+    fortunes = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
+    fortune = random.choice(fortunes)
+    card = create_fortune_card(fortune)
+    return card
+
 # 檢查是否需要重置 user_fortune_records 的時間
 def check_reset_time():
     now = datetime.datetime.now()
