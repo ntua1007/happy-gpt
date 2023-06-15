@@ -231,12 +231,12 @@ def create_fortune_card(fortune):
         "大凶": "#E6B77F"
     }
     fortune_images = {
-        "大吉": "https://i.imgur.com/RxU0fNb.jpg",
-        "中吉": "https://i.imgur.com/gmQN2Na.jpg",
-        "小吉": "https://i.imgur.com/Jfqak5C.jpg",
-        "吉": "https://i.imgur.com/Jfqak5C.jpg",
-        "凶": "https://i.imgur.com/Jfqak5C.jpg",
-        "大凶": "https://i.imgur.com/Jfqak5C.jpg"
+        "大吉": "https://i.imgur.com/JU0ucXN.jpg",
+        "中吉": "https://i.imgur.com/2B6W7Ne.jpg",
+        "小吉": "https://i.imgur.com/VHyiBa3.jpg",
+        "吉": "https://i.imgur.com/6rYhm1X.jpg",
+        "凶": "https://i.imgur.com/gD8MZSZ.jpg",
+        "大凶": "https://i.imgur.com/NI6Cqun.jpg"
     }
 
     if fortune in fortune_images:
