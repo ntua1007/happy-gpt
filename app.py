@@ -74,6 +74,17 @@ def generate_cat_card(name, rarity, action):
         "挪威森林貓": "https://i.imgur.com/s1Fsm5U.jpg",
         "狸貓": "https://i.imgur.com/K7SHhoO.jpg",
         "熊貓": "https://i.imgur.com/fgtYCCS.jpg",
+        "薄荷冰淇淋貓": "https://i.imgur.com/BCRXZeL.jpg",
+        "草莓蛋糕貓": "https://i.imgur.com/o4nmshr.jpg",
+        "香蕉巧克力貓": "https://i.imgur.com/4yzcm0z.jpg",
+        "外星幽浮貓": "https://i.imgur.com/LH4MtLL.jpg",
+        "藍莓優格貓": "https://i.imgur.com/YsBVeE3.jpg",
+        "柳橙果醬貓": "https://i.imgur.com/fN6MZDO.jpg",
+        "戀愛棉花糖貓": "https://i.imgur.com/0ru502I.jpg",
+        "宇治抹茶貓": "https://i.imgur.com/zJiJjpy.jpg",
+        "櫻桃馬卡龍貓": "https://i.imgur.com/5btCBHu.jpg",
+        "檸檬汽水貓": "https://i.imgur.com/kGjVBV5.jpg",
+
     }
     
     
