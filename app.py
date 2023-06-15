@@ -181,6 +181,7 @@ def generate_cat_card(name, rarity, action):
     return card
 
 #貓貓運勢占卜
+
 def reset_user_fortune_records():
     # 使用 global 關鍵字聲明全局變數
     global user_fortune_records
@@ -200,11 +201,11 @@ def get_fortune(username):
     fortune = cat_fortune_telling()
     return "這是尼今天ㄉ占卜結果：" + fortune + "！"
 
-def cat_fortune_telling():
-    fortunes = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
-    fortune = random.choice(fortunes)
-    card = create_fortune_card(fortune)
-    return card
+# 檢查是否需要重置 user_fortune_records 的時間
+def check_reset_time():
+    now = datetime.datetime.now()
+    if now.hour == 0 and now.minute == 0 and now.second == 0:
+        reset_user_fortune_records()
 
 # 每次使用 get_fortune 前檢查是否需要重置時間
 def get_fortune_with_time_reset(username):
@@ -219,14 +220,6 @@ def check_reset_time():
 def reset_user_fortune_records():
     global user_fortune_records
     user_fortune_records = {}
-    fortunes = {
-        "大吉": "https://i.imgur.com/RxU0fNb.jpg",
-        "中吉": "https://i.imgur.com/RxU0fNb.jpg",
-        "小吉": "https://i.imgur.com/RxU0fNb.jpg",
-        "吉": "https://i.imgur.com/RxU0fNb.jpg",
-        "凶": "https://i.imgur.com/RxU0fNb.jpg",
-        "大凶": "https://i.imgur.com/RxU0fNb.jpg"
-    }
 
 def create_fortune_card(fortune):
     colors = {
@@ -237,15 +230,22 @@ def create_fortune_card(fortune):
         "凶": "#E6B77F",
         "大凶": "#E6B77F"
     }
-
-    color = colors.get(fortune, "#E6B77F")
+    fortune_images = {
+        "大吉": "https://i.imgur.com/RxU0fNb.jpg",
+        "中吉": "https://i.imgur.com/gmQN2Na.jpg",
+        "小吉": "https://i.imgur.com/Jfqak5C.jpg",
+        "吉": "https://i.imgur.com/Jfqak5C.jpg",
+        "凶": "https://i.imgur.com/Jfqak5C.jpg",
+        "大凶": "https://i.imgur.com/Jfqak5C.jpg"
+    }
 
     if fortune in fortune_images:
         image_url = fortune_images[fortune]
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的圖片，則使用預設圖片的 URL
-
     
+    color = colors.get(fortune, "#E6B77F")
+
     card = {
         "type": "bubble",
         "header": {
@@ -283,6 +283,37 @@ def create_fortune_card(fortune):
     }
 
     return card
+
+
+def cat_fortune_telling():
+    fortunes = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
+    fortune = random.choice(fortunes)
+    card = create_fortune_card(fortune)
+    return card
+
+# 分析收到的訊息類型
+@app.route("/callback", methods=['POST'])
+def callback():
+    signature = request.headers['X-Line-Signature']
+    body = request.get_data(as_text=True)
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+    events = request.json['events']
+    for event in events:
+        if isinstance(event, MessageEvent):
+            if isinstance(event.message, TextMessage):
+                text = event.message.text
+                if text == "貓貓占卜":
+                    user_id = event.source.user_id
+                    fortune = get_fortune_with_time_reset(user_id)
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        [FlexSendMessage(text="這是尼今天ㄉ占卜結果："),
+                         fortune]
+                    )
+    return 'OK'
     
 #貓貓占卜結束
 
