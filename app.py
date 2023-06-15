@@ -82,81 +82,81 @@ def generate_cat_card(name, rarity, action):
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
 
-card = {
-    "type": "bubble",
-    "header": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-            {
-                "type": "text",
-                "text": name + " 出現了！",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#FFFFFF"
-            }
-        ],
-        "backgroundColor": "#7EAEF6"
-    },
-    "hero": {
-        "type": "image",
-        "url": image_url,
-        "size": "full",
-        "aspectRatio": "1:1",
-        "aspectMode": "cover"
-    },
-    "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [     
-            {
-                "type": "text",
-                "text": "稀有度: " + str(rarity),
-                "color": "#AAAAAA"
-            },
-            {
-                "type": "text",
-                "text": action,
-                "wrap": True
-            }
-        ]
-    },
-    "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-            {
-                "type": "button",
-                "action": {
-                    "type": "message",
-                    "label": "再找一隻貓咪",
-                    "text": "找貓咪"
+    card = {
+        "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": name + " 出現了！",
+                    "size": "lg",
+                    "weight": "bold",
+                    "color": "#FFFFFF"
+                }
+            ],
+            "backgroundColor": "#7EAEF6"
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "image",
+                    "url": image_url,
+                    "size": "full",
+                    "aspectRatio": "1:1",
+                    "aspectMode": "cover",
+                    "gravity": "center"
+                },                
+                {
+                    "type": "text",
+                    "text": "稀有度: " + str(rarity),
+                    "color": "#AAAAAA"
                 },
-                "color": "#7EAEF6"
-            },
-            {
-                "type": "button",
-                "action": {
-                    "type": "message",
-                    "label": "數數看窩總共遇見ㄌ幾隻貓咪",
-                    "text": "窩遇見ㄌ幾隻貓咪？"
+                {
+                    "type": "text",
+                    "text": action,
+                    "wrap": True
+                }
+            ],
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "再找一隻貓咪",
+                        "text": "找貓咪"
+                    },
+                    "color": "#7EAEF6"
                 },
-                "color": "#7EAEF6"
-            },
-            {
-                "type": "button",
-                "action": {
-                    "type": "message",
-                    "label": "數數看窩總共遇見ㄌ幾種貓咪",
-                    "text": "窩遇見ㄌ幾種貓咪？"
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "數數看窩總共遇見ㄌ幾隻貓咪",
+                        "text": "窩遇見ㄌ幾隻貓咪？"
+                    },
+                    "color": "#7EAEF6"
                 },
-                "color": "#7EAEF6"
-            }
-        ]
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "數數看窩總共遇見ㄌ幾種貓咪",
+                        "text": "窩遇見ㄌ幾種貓咪？"
+                    },
+                    "color": "#7EAEF6"
+                }
+            ]
+        }
     }
-}
     return card
-
 
 
 @app.route('/')
