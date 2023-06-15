@@ -178,6 +178,65 @@ def generate_cat_card(name, rarity, action):
     }
     return card
 
+#貓貓運勢占卜
+
+import random
+
+def create_fortune_card(fortune):
+    colors = {
+        "大吉": "#F1D91D",
+        "中吉": "#7CC400",
+        "小吉": "#7EAEF6",
+        "吉": "#7EAEF6",
+        "凶": "#C696BE",
+        "大凶": "#C696BE"
+    }
+
+    color = colors.get(fortune, "#7EAEF6")
+
+    card = {
+        "type": "bubble",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "貓貓占卜結果",
+                    "size": "lg",
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "align": "center"
+                }
+            ],
+            "backgroundColor": color
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "尼今天的運勢是：" + fortune + "！",
+                    "weight": "bold",
+                    "align": "center"
+                }
+            ]
+        },
+    }
+
+    return card
+
+
+def cat_fortune_telling():
+    fortunes = ["大吉", "中吉", "小吉", "吉", "凶", "大凶"]
+    fortune = random.choice(fortunes)
+    card = create_fortune_card(fortune)
+    return card
+
+    
+#貓貓運勢結束
+
 @app.route('/')
 def index():
     return 'Hello World!'
