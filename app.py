@@ -276,7 +276,8 @@ def create_fortune_card(fortune):
                     "type": "text",
                     "text": "尼今天的運勢是：" + fortune + "！",
                     "weight": "bold",
-                    "align": "center"
+                    "align": "center",
+                    "color": "#E6B77F"
                 }
             ]
         },
