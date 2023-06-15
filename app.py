@@ -96,6 +96,13 @@ def generate_cat_card(name, rarity, action):
         "宇治抹茶貓": "https://i.imgur.com/zJiJjpy.jpg",
         "櫻桃馬卡龍貓": "https://i.imgur.com/5btCBHu.jpg",
         "檸檬汽水貓": "https://i.imgur.com/kGjVBV5.jpg",
+        "彩虹獨角貓": "https://i.imgur.com/5wSbkbU.jpg"
+        "白金鑽石貓": "https://i.imgur.com/6vRI7ZI.jpg"
+        "黑夜伯爵貓": "https://i.imgur.com/tQqFyr6.jpg"
+        "月光精靈貓": "https://i.imgur.com/ao3WB1G.jpg" #待補
+        "尊絕不凡天使貓": "https://i.imgur.com/ao3WB1G.jpg", #待補
+        "混沌帝王惡魔貓": "https://i.imgur.com/ao3WB1G.jpg",
+    
 
     }
     
