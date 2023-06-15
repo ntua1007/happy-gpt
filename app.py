@@ -180,25 +180,33 @@ def generate_cat_card(name, rarity, action):
     return card
 
 #貓貓運勢占卜
+def reset_user_fortune_records():
+    # 重置 user_fortune_records 的時間
+    global user_fortune_records
+    user_fortune_records = {}
 
-user_fortune_records = {}
-fortune_cooldown = datetime.timedelta(days=1)
+def get_fortune(username):
+    if username in user_fortune_records:
+        last_fortune_time = user_fortune_records[username]
+        time_since_last_fortune = datetime.datetime.now() - last_fortune_time
+        if time_since_last_fortune.days < 1:
+            return "每天只能占卜一次ㄛ！請明天再來～"
+    user_fortune_records[username] = datetime.datetime.now()
+    fortune = cat_fortune_telling()  # 占卜結果
+    return "這是尼今天ㄉ占卜結果：" + fortune + ！"
 
-def can_user_draw_fortune(user_id):
-    # 檢查用戶是否存在於記錄中
-    if user_id in user_fortune_records:
-        last_draw_time = user_fortune_records[user_id]
-        current_time = datetime.datetime.now()
-        # 檢查距離上次抽占卜的時間是否超過間隔時間
-        if current_time - last_draw_time < fortune_cooldown:
-            return False
-    return True
+# 檢查是否需要重置 user_fortune_records 的時間
+def check_reset_time():
+    now = datetime.datetime.now()
+    if now.hour == 0 and now.minute == 0 and now.second == 0:
+        reset_user_fortune_records()
 
-def update_user_fortune_record(user_id):
-    # 更新用戶的占卜記錄為當前時間
-    user_fortune_records[user_id] = datetime.datetime.now()
+# 每次使用 get_fortune 前檢查是否需要重置時間
+def get_fortune_with_time_reset(username):
+    check_reset_time()
+    return get_fortune(username)
 
-def callback(event):
+def line_callback(event):
     # 獲取用戶的 ID
     user_id = event.source.user_id
   
