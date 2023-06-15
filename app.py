@@ -39,6 +39,16 @@ def generate_random_cat():
 
 
 def generate_cat_card(name, rarity, action):
+    color = "#7EAEF6"  # 預設顏色為 N 稀有度的顏色
+    if rarity == "N":
+        color = "#7CC400"
+    elif rarity == "R":
+        color = "#7CC400"
+    elif rarity == "SR":
+        color = "#F1D91D"
+    elif rarity == "SSR":
+        color = "#C696BE"
+        
     cat_images = {
         "橘貓": "https://i.imgur.com/RxU0fNb.jpg",
         "黑貓": "https://i.imgur.com/gmQN2Na.jpg",
@@ -93,6 +103,7 @@ def generate_cat_card(name, rarity, action):
     else:
         image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
 
+
     card = {
         "type": "bubble",
         "header": {
@@ -108,7 +119,7 @@ def generate_cat_card(name, rarity, action):
                     "align": "center"
                 }
             ],
-            "backgroundColor": "#7EAEF6"
+            "backgroundColor": color  # 使用根據稀有度設定的顏色
         },
         "hero": {
             "type": "image",
@@ -142,7 +153,7 @@ def generate_cat_card(name, rarity, action):
                         "label": "再找一隻貓咪",
                         "text": "找貓咪"
                     },
-                    "color": "#7EAEF6"
+                    "color": color  # 使用根據稀有度設定的顏色
                 },
                 {
                     "type": "button",
@@ -151,7 +162,7 @@ def generate_cat_card(name, rarity, action):
                         "label": "數數看窩總共遇見ㄌ幾隻貓咪",
                         "text": "窩遇見ㄌ幾隻貓咪？"
                     },
-                    "color": "#7EAEF6"
+                    "color": color  # 使用根據稀有度設定的顏色
                 },
                 {
                     "type": "button",
@@ -160,13 +171,12 @@ def generate_cat_card(name, rarity, action):
                         "label": "數數看窩總共遇見ㄌ幾種貓咪",
                         "text": "窩遇見ㄌ幾種貓咪？"
                     },
-                    "color": "#7EAEF6"
+                    "color": color  # 使用根據稀有度設定的顏色
                 }
             ]
         }
     }
     return card
-
 
 @app.route('/')
 def index():
