@@ -191,7 +191,9 @@ def get_fortune(username):
         time_since_last_fortune = datetime.datetime.now() - last_fortune_time
         if time_since_last_fortune.days < 1:
             return "每天只能占卜一次ㄛ！請明天再來～"
-    user_fortune_records[username] = datetime.datetime.now()
+    else:
+        user_fortune_records[username] = datetime.datetime.now()
+    
     fortune = cat_fortune_telling()  # 占卜結果
     return "這是尼今天ㄉ占卜結果：" + fortune + "！"
 
