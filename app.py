@@ -301,6 +301,12 @@ def handle_message(event):
             message = f"尼總共遇見了 {total_species} 種貓咪！還有 {waiting_species} 種貓咪正在等著尼！"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=message))
 
+    elif event.message.text == "貓貓占卜":
+        # 處理貓貓占卜的相應邏輯
+        fortune_card = cat_fortune_telling()
+        line_bot_api.reply_message(event.reply_token, FlexSendMessage(alt_text="貓貓占卜結果", contents=fortune_card))
+
+
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="QQ...SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
 
