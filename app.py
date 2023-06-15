@@ -25,6 +25,8 @@ actions = ['叼著魚走ㄌ出來，跟尼說午安。', '正在偷偷看著尼�
 
 
 def generate_random_cat():
+    global encountered_cats
+    global encountered_species
     cat_rarity = random.choices(['N', 'R', 'SR', 'SSR'], weights=[75, 15, 8, 2], k=1)[0]
     if cat_rarity == "N":
         cat_species = random.choice(cats_N)
@@ -34,12 +36,11 @@ def generate_random_cat():
         cat_species = random.choice(cats_SR)
     else:
         cat_species = random.choice(cats_SSR)
-    if cat_species not in encountered_species:
+    if cat_species not in encountered_species: #計算貓咪種類和數量
         encountered_species.append(cat_species)
     encountered_cats.append(cat_species)
     
     return cat_species, cat_rarity, random.choice(actions)
-
 
 def generate_cat_card(name, rarity, action):
     color = "#7EAEF6"  # 預設顏色為 N 稀有度的顏色
@@ -109,7 +110,7 @@ def generate_cat_card(name, rarity, action):
     if name in cat_images:
         image_url = cat_images[name]
     else:
-        image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL
+        image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的貓咪圖片，則使用預設圖片的 URL(可刪除)
 
 
     card = {
@@ -248,7 +249,7 @@ def create_fortune_card(fortune):
     if fortune in fortune_images:
         image_url = fortune_images[fortune]
     else:
-        image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的圖片，則使用預設圖片的 URL
+        image_url = "https://i.imgur.com/3ky4O6P.jpg"  # 如果找不到對應的圖片，則使用預設圖片的 URL（可刪除）
     
     color = colors.get(fortune, "#E6B77F")
 
@@ -349,7 +350,7 @@ def handle_message(event):
     elif event.message.text == "窩遇見ㄌ幾種貓咪？":
         total_species = len(encountered_species)
         if total_species == 50:
-            message = "太棒了，尼已經找到ㄌ所有ㄉ貓咪！"
+            message = "恭喜，太讚了，尼已經找到ㄌ所有ㄉ貓咪！"
         else:
             waiting_species = 50 - total_species
             message = f"尼總共遇見了 {total_species} 種貓咪！還有 {waiting_species} 種貓咪正在等著尼！"
