@@ -193,7 +193,7 @@ def get_fortune(username):
             return "每天只能占卜一次ㄛ！請明天再來～"
     user_fortune_records[username] = datetime.datetime.now()
     fortune = cat_fortune_telling()  # 占卜結果
-    return "這是尼今天ㄉ占卜結果：" + fortune + ！"
+    return "這是尼今天ㄉ占卜結果：" + fortune + "！"
 
 # 檢查是否需要重置 user_fortune_records 的時間
 def check_reset_time():
@@ -341,7 +341,6 @@ def handle_message(event):
         # 處理貓貓占卜的相應邏輯
         fortune_card = cat_fortune_telling()
         line_bot_api.reply_message(event.reply_token, FlexSendMessage(alt_text="貓貓占卜結果", contents=fortune_card))
-
 
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="QQ...SORRY，人類有點害羞，不敢跟陌生人聊天，請試著跟貓咪們一起玩8！"))
