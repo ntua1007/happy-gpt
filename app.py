@@ -234,6 +234,32 @@ def cat_fortune_telling():
     card = create_fortune_card(fortune)
     return card
 
+# 分析收到的訊息類型
+@app.route("/callback", methods=['POST'])
+def callback():
+    # 获取请求中的事件
+    events = request.json['events']
+    for event in events:
+        # 判断事件类型是否为 MessageEvent
+        if isinstance(event, MessageEvent):
+            # 判断消息类型是否为 TextMessage
+            if isinstance(event.message, TextMessage):
+                text = event.message.text
+                # 判断用户输入是否为 "貓貓占卜"
+                if text == "貓貓占卜":
+                    # 生成随机的貓咪占卜结果
+                    cat_name, cat_rarity, cat_action = generate_random_cat()
+                    # 生成貓咪卡片
+                    cat_card = generate_cat_card(cat_name, cat_rarity, cat_action)
+                    # 回复貓咪卡片
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        cat_card
+                    )
+                    return 'OK'
+    return 'OK'
+
+
     
 #貓貓運勢結束
 
