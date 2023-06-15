@@ -93,7 +93,7 @@ def generate_cat_card(name, rarity, action):
                     "text": name + " 出現了！",
                     "size": "lg",
                     "weight": "bold",
-                    "color": "#FFFFFF"
+                    "color": "#FFFFFF",
                     "align": "center"
                 }
             ],
