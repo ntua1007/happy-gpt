@@ -109,6 +109,7 @@ def generate_cat_card(name, rarity, action):
                     "aspectRatio": "1:1",
                     "aspectMode": "cover",
                     "gravity": "center"
+                    "aspectMode": "fit"
                 },                
                 {
                     "type": "text",
