@@ -13,6 +13,7 @@ encountered_species = []
 
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
+user_fortune_records = {}  # 在全局範圍內定義 user_fortune_records 變數
 
 
 cats_N = ['橘貓', '黑貓', '白貓', '藍貓', '奶油貓', '三花貓', '玳瑁貓', '賓士貓', '乳牛貓', '灰虎斑貓', '棕虎斑貓', '三花虎斑貓', '白底灰虎斑貓', '白底棕虎斑貓', '白底橘虎斑貓', '黑底白襪貓', '橘底白襪貓', '灰底白襪貓', '棕底白襪貓', '啵啵貓', '尷尬貓', '哭哭貓', '無耳貓', '九命貓', '豹貓', '暹羅貓', '布偶貓', '無毛貓', '波斯貓', '緬因貓', '美國捲耳貓', '挪威森林貓', '狸貓', '熊貓']
@@ -181,20 +182,22 @@ def generate_cat_card(name, rarity, action):
 
 #貓貓運勢占卜
 def reset_user_fortune_records():
-    # 重置 user_fortune_records 的時間
+    # 使用 global 關鍵字聲明全局變數
     global user_fortune_records
+    # 重置 user_fortune_records 的時間
     user_fortune_records = {}
 
 def get_fortune(username):
+    # 使用 global 關鍵字聲明全局變數
+    global user_fortune_records
     if username in user_fortune_records:
         last_fortune_time = user_fortune_records[username]
         time_since_last_fortune = datetime.datetime.now() - last_fortune_time
         if time_since_last_fortune.days < 1:
             return "每天只能占卜一次ㄛ！請明天再來～"
-    else:
-        user_fortune_records[username] = datetime.datetime.now()
+    user_fortune_records[username] = datetime.datetime.now()
     
-    fortune = cat_fortune_telling()  # 占卜結果
+    fortune = cat_fortune_telling()
     return "這是尼今天ㄉ占卜結果：" + fortune + "！"
 
 # 檢查是否需要重置 user_fortune_records 的時間
