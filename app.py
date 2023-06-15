@@ -43,7 +43,7 @@ def generate_cat_card(name, rarity, action):
     if rarity == "N":
         color = "#7CC400"
     elif rarity == "R":
-        color = "#7CC400"
+        color = "#90ABDD"
     elif rarity == "SR":
         color = "#F1D91D"
     elif rarity == "SSR":
