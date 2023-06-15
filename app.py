@@ -4,6 +4,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 import os
 import random
+import datetime
 
 app = Flask(__name__)
 
@@ -180,8 +181,27 @@ def generate_cat_card(name, rarity, action):
 
 #貓貓運勢占卜
 
-import random
+user_fortune_records = {}
+fortune_cooldown = datetime.timedelta(days=1)
 
+def can_user_draw_fortune(user_id):
+    # 檢查用戶是否存在於記錄中
+    if user_id in user_fortune_records:
+        last_draw_time = user_fortune_records[user_id]
+        current_time = datetime.datetime.now()
+        # 檢查距離上次抽占卜的時間是否超過間隔時間
+        if current_time - last_draw_time < fortune_cooldown:
+            return False
+    return True
+
+def update_user_fortune_record(user_id):
+    # 更新用戶的占卜記錄為當前時間
+    user_fortune_records[user_id] = datetime.datetime.now()
+
+def callback():
+    # 獲取用戶的 ID
+    user_id = event.source.user_id
+  
 def create_fortune_card(fortune):
     colors = {
         "大吉": "#F1D91D",
@@ -243,8 +263,6 @@ def callback():
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-    return 'OK'
-
     # 获取请求中的事件
     events = request.json['events']
     for event in events:
@@ -255,20 +273,30 @@ def callback():
                 text = event.message.text
                 # 判断用户输入是否为 "貓貓占卜"
                 if text == "貓貓占卜":
-                    # 生成随机的貓咪占卜结果
-                    cat_name, cat_rarity, cat_action = generate_random_cat()
-                    # 生成貓咪卡片
-                    cat_card = generate_cat_card(cat_name, cat_rarity, cat_action)
-                    # 回复貓咪卡片
-                    line_bot_api.reply_message(
-                        event.reply_token,
-                        cat_card
-                    )
-                    return 'OK'
+                    # 獲取用戶的 ID
+                    user_id = event.source.user_id
+                    # 檢查用戶是否可以抽占卜
+                    if can_user_draw_fortune(user_id):
+                        # 執行占卜邏輯
+                        fortune_card = cat_fortune_telling()
+                        # 更新用戶的占卜記錄
+                        update_user_fortune_record(user_id)
+                        # 回覆占卜結果給用戶
+                        line_bot_api.reply_message(
+                            event.reply_token,
+                            [TextSendMessage(text="這是你的占卜結果："),
+                             fortune_card]
+                        )
+                    else:
+                        line_bot_api.reply_message(
+                            event.reply_token,
+                            TextSendMessage(text="每天只能抽一次喔！請明天再來～")
+                        )
     return 'OK'
 
+
     
-#貓貓運勢結束
+#貓貓占卜結束
 
 @app.route('/')
 def index():
