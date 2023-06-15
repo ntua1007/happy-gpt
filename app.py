@@ -133,7 +133,7 @@ def generate_cat_card(name, rarity, action):
                 {
                     "type": "text",
                     "text": "稀有度: " + str(rarity),
-                    "color": "#AAAAAA"
+                    "color": color
                 },
                 {
                     "type": "text",
