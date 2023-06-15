@@ -211,10 +211,15 @@ def get_fortune_with_time_reset(username):
     check_reset_time()
     return get_fortune(username)
 
-def line_callback(event):
-    # 獲取用戶的 ID
-    user_id = event.source.user_id
-  
+def check_reset_time():
+    now = datetime.datetime.now()
+    if now.hour == 0 and now.minute == 0 and now.second == 0:
+        reset_user_fortune_records()
+
+def reset_user_fortune_records():
+    global user_fortune_records
+    user_fortune_records = {}
+
 def create_fortune_card(fortune):
     colors = {
         "大吉": "#F1D91D",
@@ -276,38 +281,20 @@ def callback():
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
-    # 获取请求中的事件
     events = request.json['events']
     for event in events:
-        # 判断事件类型是否为 MessageEvent
         if isinstance(event, MessageEvent):
-            # 判断消息类型是否为 TextMessage
             if isinstance(event.message, TextMessage):
                 text = event.message.text
-                # 判断用户输入是否为 "貓貓占卜"
                 if text == "貓貓占卜":
-                    # 獲取用戶的 ID
                     user_id = event.source.user_id
-                    # 檢查用戶是否可以抽占卜
-                    if can_user_draw_fortune(user_id):
-                        # 執行占卜邏輯
-                        fortune_card = cat_fortune_telling()
-                        # 更新用戶的占卜記錄
-                        update_user_fortune_record(user_id)
-                        # 回覆占卜結果給用戶
-                        line_bot_api.reply_message(
-                            event.reply_token,
-                            [FlexSendMessage(text="這是尼今天ㄉ占卜結果："),
-                             fortune_card]
-                        )
-                    else:
-                        line_bot_api.reply_message(
-                            event.reply_token,
-                            TextSendMessage(text="每天只能占卜一次ㄛ！請明天再來～")
-                        )
+                    fortune = get_fortune_with_time_reset(user_id)
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        [FlexSendMessage(text="這是尼今天ㄉ占卜結果："),
+                         fortune]
+                    )
     return 'OK'
-
-
     
 #貓貓占卜結束
 
