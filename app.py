@@ -4,7 +4,6 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 import os
 import random
-import pytz
 import datetime
 
 app = Flask(__name__)
@@ -182,10 +181,10 @@ def generate_cat_card(name, rarity, action):
     return card
 
 #貓貓運勢占卜
-
 def reset_user_fortune_records():
     # 使用 global 關鍵字聲明全局變數
     global user_fortune_records
+    # 重置 user_fortune_records 的時間
     user_fortune_records = {}
 
 def get_fortune(username):
@@ -193,14 +192,10 @@ def get_fortune(username):
     global user_fortune_records
     if username in user_fortune_records:
         last_fortune_time = user_fortune_records[username]
-        # 取得當前時間
-        now = datetime.datetime.now(pytz.timezone('Asia/Taipei'))
-        # 取得今天凌晨的時間
-        today_midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        # 比較最後占卜時間是否在今天凌晨之後
-        if last_fortune_time >= today_midnight:
-            return "每天只能占卜一次！請明天再來～"
-    user_fortune_records[username] = datetime.datetime.now(pytz.timezone('Asia/Taipei'))
+        time_since_last_fortune = datetime.datetime.now() - last_fortune_time
+        if time_since_last_fortune.days < 1:
+            return "每天只能占卜一次ㄛ！請明天再來～"
+    user_fortune_records[username] = datetime.datetime.now()
     
     fortune = cat_fortune_telling()
     return "這是尼今天ㄉ占卜結果：" + fortune + "！"
