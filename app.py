@@ -219,18 +219,26 @@ def check_reset_time():
 def reset_user_fortune_records():
     global user_fortune_records
     user_fortune_records = {}
+    fortunes = {
+        "大吉": "https://i.imgur.com/RxU0fNb.jpg",
+        "中吉": "https://i.imgur.com/RxU0fNb.jpg",
+        "小吉": "https://i.imgur.com/RxU0fNb.jpg",
+        "吉": "https://i.imgur.com/RxU0fNb.jpg",
+        "凶": "https://i.imgur.com/RxU0fNb.jpg",
+        "大凶": "https://i.imgur.com/RxU0fNb.jpg"
+    }
 
 def create_fortune_card(fortune):
     colors = {
-        "大吉": "#F1D91D",
-        "中吉": "#7CC400",
-        "小吉": "#7EAEF6",
-        "吉": "#7EAEF6",
-        "凶": "#C696BE",
-        "大凶": "#C696BE"
+        "大吉": "#E6B77F",
+        "中吉": "#E6B77F",
+        "小吉": "#E6B77F",
+        "吉": "#E6B77F",
+        "凶": "#E6B77F",
+        "大凶": "#E6B77F"
     }
 
-    color = colors.get(fortune, "#7EAEF6")
+    color = colors.get(fortune, "#E6B77F")
 
     card = {
         "type": "bubble",
@@ -248,6 +256,11 @@ def create_fortune_card(fortune):
                 }
             ],
             "backgroundColor": color
+        },
+        "hero": {
+            "type": "image",
+            "url": image_url,
+            "size": "full"
         },
         "body": {
             "type": "box",
