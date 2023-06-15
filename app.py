@@ -98,18 +98,18 @@ def generate_cat_card(name, rarity, action):
             ],
             "backgroundColor": "#7EAEF6"
         },
+        "hero": {
+            "type": "image",
+            "url": image_url,
+            "size": "full",
+            "aspectRatio": "1:1",
+            "aspectMode": "cover",
+                 }
+        },
         "body": {
             "type": "box",
             "layout": "vertical",
-            "contents": [
-                {
-                    "type": "image",
-                    "url": image_url,
-                    "size": "full",
-                    "aspectRatio": "1:1",
-                    "aspectMode": "cover",
-                    "gravity": "center"
-                },                
+            "contents": [     
                 {
                     "type": "text",
                     "text": "稀有度: " + str(rarity),
